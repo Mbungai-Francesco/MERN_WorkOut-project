@@ -1,10 +1,14 @@
-import { useEffect, useState } from "react";
-import { Workout } from "../types";
+import { useEffect } from "react";
+import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
+
+//components
 import WorkoutDetails from "../components/workoutDetails";
 import WorkoutForm from "../components/workoutForm";
 
 const Home = () => {
-	const [workouts, setWorkouts] = useState<Workout[]>();
+  // const [workouts, setWorkouts] = useState<Workout[]>();
+	const { state , dispatch } = useWorkoutsContext();
+  const { workouts } = state;
 
 	useEffect(() => {
 		const fetchWorkouts = async () => {
@@ -24,7 +28,7 @@ const Home = () => {
 
 				const json = await response.json();
 				console.log(json);
-				setWorkouts(json);
+				dispatch({type: 'SET_WORKOUT', payload: json});
 			} catch (error) {
 				console.error("Failed to fetch workouts:", error);
 			}
