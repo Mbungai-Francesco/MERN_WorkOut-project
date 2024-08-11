@@ -5,14 +5,16 @@ import Navbar from "./components/navbar";
 function App() {
 	return (
 		<>
-			<BrowserRouter>
-        <Navbar/>
-				<div>
-					<Routes>
-						<Route path="/" element={<Home/>} />
-					</Routes>
-				</div>
-			</BrowserRouter>
+			<div className="bg-stone-100 h-screen">
+				<BrowserRouter>
+					<Navbar />
+					<div className="px-16 py-4">
+						<Routes>
+							<Route path="/" element={<Home />} />
+						</Routes>
+					</div>
+				</BrowserRouter>
+			</div>
 		</>
 	);
 }
